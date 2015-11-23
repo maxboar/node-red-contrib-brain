@@ -9,7 +9,7 @@ module.exports = function(RED){
       var net = new brain.NeuralNetwork({
         learningRate: node.learningRate
       })
-      msg.payload = net
+      msg.payload = net.train(msg.payload)
       node.send(msg)
     })
   }
