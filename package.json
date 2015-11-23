@@ -2,13 +2,12 @@
   "name": "node-red-contrib-brain",
   "version": "0.1.0",
   "description": "brain.js for node-red",
-  "main": "sample/sample.js",
   "keywords": [
     "node-red"
   ],
-  "node-red": {
-    "node": {
-      "sample": "sample/sample.js"
+  "node-red":{
+    "nodes": {
+      "brain": "brain/brain.js"
     }
   },
   "author": "Randy Lu <randypriv@gmail.com>",

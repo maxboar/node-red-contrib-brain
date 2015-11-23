@@ -1,0 +1,27 @@
+<script type="text/javascript">
+  RED.nodes.registerType('brain', {
+    category: 'brain',
+    color: '#a6bbcf',
+    inputs: 1,
+    outputs: 1,
+    defaults: {
+      name: { value: 'brain' },
+      learningRate: { value: 0.6 }
+    },
+    label: function(){
+      return this.name || 'brain'
+    }
+  })
+</script>
+
+<script type="text/x-red" data-template-name="brain">
+  <div class="form-row">
+    <label for="node-input-name">name</label>
+    <input type="text" id="node-input-name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-learningRate">learningRate</label>
+    <input type="text" id="node-input-learningRate">
+  </div>
+</script>
+
