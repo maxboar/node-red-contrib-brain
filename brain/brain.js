@@ -10,14 +10,14 @@ module.exports = function(RED){
       var net = new brain.NeuralNetwork({
         learningRate: node.learningRate
       })
-      net.train(msg.payload, {
+      net.train(msg.trainData, {
         errorThresh: config.errorThresh,
         iterations: config.iterations,
         log: config.log,
         learningRate: config.learningRate,
         logPeriod: config.logPeriod
       })
-      msg.payload = net.run(config.input)
+      msg.payload = net.run(msg.runData)
       node.send(msg)
     })
   }
