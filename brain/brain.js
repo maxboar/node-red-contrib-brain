@@ -6,19 +6,59 @@ module.exports = function(RED){
 
     var node = this
 
+    node.status({
+      fill: 'grey',
+      shape: 'dot',
+      text: 'waiting'
+    })
+
     this.on('input', function(msg){
+
       var net = new brain.NeuralNetwork({
         learningRate: node.learningRate
       })
-      net.train(msg.trainData, {
-        errorThresh: config.errorThresh,
-        iterations: config.iterations,
-        log: config.log,
-        learningRate: config.learningRate,
-        logPeriod: config.logPeriod
+
+      node.status({
+        fill: 'yellow',
+        shape: 'dot',
+        text: 'training'
       })
-      msg.payload = net.run(msg.runData)
-      node.send(msg)
+
+      var trainStream = net.createTrainStream({
+
+        floodCallback: function() {
+          flood(trainStream, msg.trainData);
+        },
+
+        doneTrainingCallback: function(obj) {
+          node.status({
+            fill: 'green',
+            shape: 'dot',
+            text: 'done'
+          })
+          msg.payload = net.run(msg.runData)
+          node.send(msg)
+        }
+      });
+
+      flood(trainStream, msg.trainData);
+
+      function flood(stream, data) {
+        for (var i = 0; i < data.length; i++) {
+          stream.write(data[i]);
+        }
+
+        stream.write(null);
+      }
+
+      // net.train(msg.trainData, {
+      //   errorThresh: config.errorThresh,
+      //   iterations: config.iterations,
+      //   log: config.log,
+      //   learningRate: config.learningRate,
+      //   logPeriod: config.logPeriod
+      // })
+
     })
   }
 
