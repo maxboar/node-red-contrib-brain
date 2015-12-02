@@ -1,5 +1,8 @@
 # node-red-contrib-brain
 
+[![npm](https://img.shields.io/npm/dm/node-red-contrib-brain.svg)](https://www.npmjs.com/package/node-red-contrib-brain)
+[![npm](https://img.shields.io/npm/v/node-red-contrib-brain.svg)](https://www.npmjs.com/package/node-red-contrib-brain)
+
 # Install
 
 ```bash
