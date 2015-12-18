@@ -14,9 +14,7 @@ module.exports = function(RED){
 
     this.on('input', function(msg){
 
-      var net = new brain.NeuralNetwork({
-        learningRate: node.learningRate
-      })
+      var net = new brain.NeuralNetwork(msg.neuralNetworkOptions)
 
       if (msg.netJSON) {
         // 不训练
@@ -62,18 +60,7 @@ module.exports = function(RED){
 
           stream.write(null);
         }
-
-        // net.train(msg.trainData, {
-        //   errorThresh: config.errorThresh,
-        //   iterations: config.iterations,
-        //   log: config.log,
-        //   learningRate: config.learningRate,
-        //   logPeriod: config.logPeriod
-        // })
       }
-
-      
-
     })
   }
 
