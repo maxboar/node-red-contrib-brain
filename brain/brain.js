@@ -12,11 +12,11 @@ module.exports = function(RED){
       text: 'waiting'
     })
 
-    node.net = new brain.NeuralNetwork();
+    node.net = new brain.NeuralNetwork(config);
 
     this.on('input', function(msg){
 
-      if (!!msg.neuralNetworkOptions && !!msg.trainData) node.net = new brain.NeuralNetwork(msg.neuralNetworkOptions)
+      if (!!msg.neuralNetworkOptions && !!msg.trainData) node.net = new brain.NeuralNetwork(msg.neuralNetworkOptions||config)
 
       if (msg.netJSON) {
         //load network from external source
