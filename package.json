@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-brain2",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Neural networks in Node-RED",
   "keywords": [
     "node-red"
